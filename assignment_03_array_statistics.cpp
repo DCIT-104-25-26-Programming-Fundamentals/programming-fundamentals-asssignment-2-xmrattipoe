@@ -34,11 +34,70 @@
 //   print an error message and stop.
 //
 
-//
-// =============================================================================
-// YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
-// =============================================================================
-
 #include <iostream>
 using namespace std;
 
+double calculateSum(double numbers[], int n) {
+    double total = 0;
+    for (int i = 0; i < n; i++) {
+        total += numbers[i];
+    }
+    return total;
+}
+
+double calculateAverage(double numbers[], int n) {
+    double total = calculateSum(numbers, n);
+    return total / n;
+}
+
+double findMaximum(double numbers[], int n) {
+    double largest = numbers[0];
+    for (int i = 0; i < n; i++) {
+        if (numbers[i] > largest) {
+            largest = numbers[i];
+        }
+    }
+    return largest;
+}
+
+double findMinimum(double numbers[], int n) {
+    double smallest = numbers[0];
+    for (int i = 0; i < n; i++) {
+        if (numbers[i] < smallest) {
+            smallest = numbers[i];
+        }
+    }
+    return smallest;
+}
+
+int main() {
+    int n;
+    cout << "How many numbers? ";
+    cin >> n;
+
+    if (n <= 0) {
+        cout << "Error: The number of values must be a positive integer." << endl;
+        return 0;
+    }
+
+    double* numbers = new double[n];
+
+    for (int i = 0; i < n; i++) {
+        cout << "Enter number " << (i + 1) << ": ";
+        cin >> numbers[i];
+    }
+
+    double total = calculateSum(numbers, n);
+    double average = calculateAverage(numbers, n);
+    double maximum = findMaximum(numbers, n);
+    double minimum = findMinimum(numbers, n);
+
+    cout << "\nResults:" << endl;
+    cout << "Sum:     " << total << endl;
+    cout << "Average: " << average << endl;
+    cout << "Maximum: " << maximum << endl;
+    cout << "Minimum: " << minimum << endl;
+
+    delete[] numbers;
+    return 0;
+}
